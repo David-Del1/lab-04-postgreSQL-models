@@ -47,4 +47,16 @@ describe('dog routes', () => {
 
     expect(res.body).toEqual([spot, rover, bingo]);
   });
+
+  it('read a single dog by id via GET', async () => {
+    const dog = await Dog.insert({
+      name: 'fred',
+      age: 10,
+      weight: '1 lbs'
+    });
+
+    const res = await request(app).get(`/api/v1/dogs/${dog.id}`);
+
+    expect(res.body).toEqual(dog);
+  });
 });
