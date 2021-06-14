@@ -73,5 +73,17 @@ describe('Snack CRUD routes', () => {
 
   });
 
+  it('Should delete a snack via DELETE', async () => {
+    const snack = await Snack.insert({
+      name: 'peanut butter',
+      type: 'spread',
+      flavor: 'peanut-y'
+    });
+
+    const res = await request(app).delete(`/api/v1/snacks/${snack.id}`);
+    expect(res.body).toEqual(snack);
+
+  });
+
   
 });
