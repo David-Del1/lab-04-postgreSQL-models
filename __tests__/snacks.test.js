@@ -46,5 +46,18 @@ describe('Snack CRUD routes', () => {
     expect(res.body).toEqual([snack1, snack2, snack3]);
   });
 
+  it('Should read a single snack via GET', async () => {
+    const snack = await Snack.insert({
+      name: 'strawberry',
+      type: 'fruit',
+      flavor: 'straw'
+    });
+
+    const res = await request(app).get(`/api/v1/snacks/${snack.id}`);
+
+    expect(res.body).toEqual(snack);
+
+  });
+
   
 });
