@@ -59,5 +59,19 @@ describe('Snack CRUD routes', () => {
 
   });
 
+  it('Should update a snack via PUT', async () => {
+    const snack = await Snack.insert({
+      name: 'fritos',
+      type: 'chips',
+      flavor: 'chippy'
+    });
+
+    snack.name = 'gray';
+
+    const res = await await request(app).put(`/api/v1/snacks/${snack.id}`).send(snack);
+    expect(res.body).toEqual(snack);
+
+  });
+
   
 });
