@@ -7,7 +7,7 @@ describe('Snack CRUD routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  
+
   it('Should insert a new snack via POST', async () => {
     const res = await request(app)
       .post('/api/v1/snacks')
@@ -15,7 +15,7 @@ describe('Snack CRUD routes', () => {
 
     expect(res.body).toEqual({
       id: '1',
-      name: 'spot',
+      name: 'cheetos',
       type: 'chips',
       flavor: 'cheese'
     });
