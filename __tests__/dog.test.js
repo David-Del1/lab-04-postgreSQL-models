@@ -43,8 +43,6 @@ describe('dog routes', () => {
     const res = await request(app)
       .get('/api/v1/dogs');
 
-    console.log(res.body);
-
     expect(res.body).toEqual([spot, rover, bingo]);
   });
 
@@ -59,4 +57,33 @@ describe('dog routes', () => {
 
     expect(res.body).toEqual(dog);
   });
+
+  it('Should update a single dog via PUT', async () => {
+    const dog = await Dog.insert({
+      name: 'fred',
+      age: 10,
+      weight: '1 lbs'
+    });
+
+    dog.name = 'Gazeebo';
+
+    const res = await request(app).put(`/api/v1/dogs/${dog.id}`)
+      .send(dog);
+    
+    expect(res.body).toEqual(dog);
+  });
+
+  it('Deletes a dog via DELETE', async () => {
+    const dog = await Dog.insert({
+      name: 'Mad Max',
+      age: 4,
+      weight: '10 lbs'
+    });
+
+    const res = await request(app).delete(`/api/v1/dogs/${dog.id}`)
+      .send(dog);
+    expect(res.body).toEqual(dog);
+  });
+
+  
 });
