@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS dogs, shoes, snacks, books;
+DROP TABLE IF EXISTS dogs, shoes, snacks, books, games;
 
 CREATE TABLE dogs (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -26,4 +26,11 @@ CREATE TABLE books (
   title TEXT NOT NULL,
   genre TEXT NOT NULL,
   pub_year INTEGER NOT NULL
+);
+
+CREATE TABLE games (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  title TEXT NOT NULL,
+  genre TEXT NOT NULL,
+  release_year INTEGER NOT NULL
 )
